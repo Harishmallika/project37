@@ -1,0 +1,59 @@
+{% extends 'dummy.html' %}
+
+{% block title %}
+  <title>home page</title>
+{% endblock %}
+
+{% block body_block %}
+    <center>
+
+        {% if username %}
+        <h1> welcome to home page[Mr/Mrs]</h1>
+        {% else %}
+           <h1> welcome to home page </h1>
+        {% endif %}   
+
+    </center>
+{% endblock %}    
+
+
+
+
+
+
+
+ @login_required
+def reset_password(request):
+    if request.method=='POST':
+        username=request.POST['un']
+        password=request.POST['pw']
+
+
+        LUO=User.objects.filter(username=username)
+        if LUO:
+            UO.set_password(password)
+            UO.save()
+            return HttpResponse('reset is done')
+        else:
+            return HttpResponse(' u r username is not in our Database')
+    return render(request,'reset_password.html')     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
